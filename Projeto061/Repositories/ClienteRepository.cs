@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Projeto06.Entities;
+using Projeto061.Settings;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -20,8 +21,8 @@ namespace Projeto06.Repositories
  VALUES(@Id, @Nome, @Cpf, @DataNascimento) 
 ";
             //abrindo conexão com o banco de dados
-            using (var connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDProjeto061;Integrated Security=True;Connect Timeout=30;Encrypt=False;"))
-        {
+            using (var connection = new SqlConnection(SqlServerSettings.GetConnectionString()))
+            {
                 //executando o comando INSERT no banco de dados
                 connection.Execute(query, cliente);
             }
